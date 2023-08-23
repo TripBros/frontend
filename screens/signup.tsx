@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, TextInput, Button, StyleSheet } from "react-native";
 import { RouteProp } from '@react-navigation/native';
 import { RootStackParamList } from '../Navigation';
+import axios from 'axios';
 
 type SignupProps = RouteProp<RootStackParamList, 'Signup'>;
 
