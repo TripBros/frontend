@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { View, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { RouteProp } from '@react-navigation/native';
-import { RootStackParamList } from '../Navigation';
+import { RootStackParamList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import axios from "axios";
 import { useNavigation } from "@react-navigation/native";
+import { storeTokens, getAccessToken } from "../Token";
+import AuthContext from '../auth-context';
 
 type SignupProps = RouteProp<RootStackParamList, 'Signup'>;
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Signup'>;
@@ -20,6 +22,7 @@ const Signup: React.FC< {route : SignupProps} > = ({ route }) => {
   const { data } = route.params;
   const { email, gender, ageStart, ageEnd } = data;
   const navigation = useNavigation<NavigationProp>();
+  const authContext = useContext(AuthContext);
 
   const [userData, setUserData] = useState<userData>({
     email,
@@ -43,9 +46,22 @@ const Signup: React.FC< {route : SignupProps} > = ({ route }) => {
       console.log("Response Headers:", response.headers);
   
       if (response.status === 200) {
+        const accessToken = response.headers['authorization'];
+        const refreshToken = response.headers['refreshtoken'];
+
+        if (accessToken && refreshToken) {
+          await storeTokens(accessToken, refreshToken);
+        }
+
         console.log("Signup Successful:", response.data);
-        navigation.navigate('Home');
-  
+
+        await getAccessToken(); //확인용
+
+        if (accessToken) {
+          authContext?.signIn(accessToken); //로그인 처리
+        }
+        
+        navigation.navigate('Home'); //확인용
       } else {
         console.log("Signup Failed:", response.data);
       }
@@ -62,15 +78,13 @@ const Signup: React.FC< {route : SignupProps} > = ({ route }) => {
         value={userData.nickname}
         placeholder="닉네임을 입력해주세요."
         onChangeText={(value) => handleChange('nickname', value)}
-        style={styles.input}
-      />
+        style={styles.input}/>
       <TextInput
         value={userData.age}
         placeholder="나이를 입력해주세요."
         keyboardType="numeric"
         onChangeText={(value) => handleChange('age', value)}
-        style={styles.input}
-      />
+        style={styles.input}/>
       <Button title="Sign Up" onPress={handleSubmit} />
     </View>
   );

@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 import axios from 'axios';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from '../Navigation';
+import { RootStackParamList } from '../types';
 import { REST_API_KEY, REDIRECT_URI } from "@env"
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'KakaoLogin'>;
