@@ -2,6 +2,7 @@ export type RootStackParamList = {
   Wait: undefined;
   Signup: { data: { email: string; gender: string; ageStart: number; ageEnd: number; } };
   Home: undefined;
+  Recommend: undefined;
   KakaoLogin: undefined;
   HomeTabs: undefined;
 };

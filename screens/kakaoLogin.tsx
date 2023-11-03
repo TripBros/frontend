@@ -22,7 +22,7 @@ const KakaoLogin: React.FC = () => {
       console.log(authorize_code);
       navigation.navigate("Wait");
 
-      axios.get('https://3118-219-255-158-170.ngrok-free.app/api/login/kakao', {
+      axios.get('http://13.125.95.174:8080/api/login/kakao', {
         params: { code: authorize_code }
       })
       .then(response => {
@@ -57,6 +57,8 @@ export default KakaoLogin;
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    paddingTop: '20%',
   },    
 });
+//margintop하니까 backgroundcolor 적용 안됨.

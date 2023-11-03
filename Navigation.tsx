@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Text, View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createStackNavigator, StackNavigationOptions } from '@react-navigation/stack';
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'; 
@@ -16,15 +17,57 @@ import { getAccessToken } from './Token';
 import AuthContext from './auth-context';
 import { RootStackParamList } from './types';
 
+const customHeaderOptions: StackNavigationOptions = {
+  headerTitle: () => (
+    <Text style={{ fontSize: 20, fontWeight: "800" }}>Tripbros</Text>
+  ),
+  headerTitleAlign: 'left',
+  headerRight: () => (
+    <View style={{ marginRight: 15 }}>
+      <Ionicons 
+        name="notifications-outline"  
+        size={25}
+      />
+    </View>
+  ),
+  headerStyle: {
+    shadowOpacity: 0,
+    elevation: 0,
+  }
+};
+
+const HomeStack: React.FC = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen 
+        name="Home" 
+        component={Home}
+        options={customHeaderOptions}
+      />
+    </Stack.Navigator>
+  );
+}
+
+const RecommendStack: React.FC = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Recommend"
+        component={Recommend}
+        options={customHeaderOptions}
+      />
+    </Stack.Navigator>
+  );
+}
 
 const HomeTabs: React.FC = () => {
   const BottomTab = createBottomTabNavigator();
 //tabBarOptions={{activeTintColor: '#749BC2', inactiveTintColor: '#585858' }}
   return (
-    <BottomTab.Navigator>
-      <BottomTab.Screen name="홈" component={Home}
+    <BottomTab.Navigator screenOptions={{ headerShown: false }}>
+      <BottomTab.Screen name="홈" component={HomeStack}
         options={{tabBarIcon: ({color}) => <Ionicons name="home-outline" size={24} color={color} />}}/>
-      <BottomTab.Screen name="추천" component={Recommend}
+      <BottomTab.Screen name="추천" component={RecommendStack}
         options={{tabBarIcon: ({color}) => <Ionicons name="bookmark-outline" size={24} color={color} />}}/>
       <BottomTab.Screen name="채팅" component={Chat} 
         options={{tabBarIcon: ({color}) => <Ionicons name="chatbox-outline" size={24} color={color} />}}/>
@@ -40,7 +83,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 const StackScreen: React.FC = () => {
   return (
-    <Stack.Navigator initialRouteName="Home">
+    <Stack.Navigator initialRouteName="Home" screenOptions={{ headerShown: false }}>
       <Stack.Screen name="KakaoLogin" component={KakaoLogin} />
       <Stack.Screen name="Home" component={HomeTabs} />
       <Stack.Screen name="Signup" component={Signup} />
