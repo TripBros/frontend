@@ -4,8 +4,11 @@ import { WebView } from 'react-native-webview';
 import axios from 'axios';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from '../Navigation';
-import { REST_API_KEY, REDIRECT_URI } from '@env';
+import { RootStackParamList } from '../types';
+import { REST_API_KEY, REDIRECT_URI } from "@env"
+
+//1. 인증코드 추출 후 사용자에게 로그인 처리 중임을 알리기 위해 Wait 화면으로 네비게이션
+//2. 백엔드 서버에 인증 코드를 보내는 요청을 성공하면, 'Signup' 화면으로 네비게이션
 
 type NavigationProp = StackNavigationProp<RootStackParamList, 'KakaoLogin'>;
 
@@ -22,7 +25,7 @@ const KakaoLogin: React.FC = () => {
       console.log(authorize_code);
       navigation.navigate("Wait");
 
-      axios.get('https://3118-219-255-158-170.ngrok-free.app/api/login/kakao', {
+      axios.get('http://13.125.95.174:8080/api/login/kakao', {
         params: { code: authorize_code }
       })
       .then(response => {
@@ -30,7 +33,9 @@ const KakaoLogin: React.FC = () => {
         navigation.navigate('Signup', { data: response.data });
       })
       .catch(error => {
-        console.error("Error sending the code:", error);
+        console.error("Error Response Data:", error.response.data);
+        console.error("Error Response Status:", error.response.status);
+        console.error("Error Response Headers:", error.response.headers);
       });
     };
   }
@@ -57,6 +62,8 @@ export default KakaoLogin;
 const Styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
+    paddingTop: '20%',
   },    
 });
+//margintop하니까 backgroundcolor 적용 안됨.
