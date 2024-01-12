@@ -4,12 +4,18 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import axios from 'axios';
 
+//백엔드로부터 크롤링된 장소 데이터들을 가져와서 장소 이름, 주소, 별점 등 데이터를 뿌려주는 코드
+
+//추후 코드 수정 필요한 부분
+//(1) 백엔드로부터 가져오는 장소의 개수를 부모 컴포넌트에서 20개 고정으로 설정해둠.
+//(2) 테스트용으로 만들어진 일본 후쿠오카 데이터들만 가져올 수 있음.
+
 interface PlaceRecommendProps {
   numberOfPlaces: number;
 }
 
 const PlaceRecommend : React.FC<PlaceRecommendProps> = ({ numberOfPlaces }) => {
-  const [isSaved, setIsSaved] = useState<boolean>(false);
+  const [isSaved, setIsSaved] = useState<boolean>(false); //좋아요(하트) 기능을 위한 변수
   const [imageHeight, setImageHeight] = useState(180);
   const [imageWidth, setImageWidth] = useState(() => {
     const viewportWidth = Dimensions.get('window').width;
@@ -43,8 +49,9 @@ const PlaceRecommend : React.FC<PlaceRecommendProps> = ({ numberOfPlaces }) => {
         console.error("Error fetching data: ", error);
       }
     };
+
     fetchData();
-  }, [numberOfPlaces]); // numberOfPlaces가 변경되면 데이터를 다시 불러옵니다.
+  }, [numberOfPlaces]); // numberOfPlaces가 변경되면 데이터를 다시 불러옴. <- 수정 필요
 
   return (
     <View style={styles.outerContainer}>
@@ -71,14 +78,12 @@ export default PlaceRecommend;
 
 const styles = StyleSheet.create({
   outerContainer: {
-    alignItems: 'center',  //가운데 정렬
+    alignItems: 'center',
   },
   container: {
     width: '85%',
   },
   image: {
-    //width: '100%', //컨테이너 너비
-    //height: 180,
     borderRadius: 20,
     marginTop: 15,
   },
@@ -108,6 +113,6 @@ const styles = StyleSheet.create({
   address: {
     fontSize: 12,
     color: '#D9D9D9',
-    marginLeft: 5,  // 텍스트와 아이콘 사이의 간격
+    marginLeft: 5,  //텍스트와 아이콘 사이의 간격
   },
 });

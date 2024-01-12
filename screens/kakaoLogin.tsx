@@ -7,6 +7,9 @@ import { useNavigation } from "@react-navigation/native";
 import { RootStackParamList } from '../types';
 import { REST_API_KEY, REDIRECT_URI } from "@env"
 
+//1. 인증코드 추출 후 사용자에게 로그인 처리 중임을 알리기 위해 Wait 화면으로 네비게이션
+//2. 백엔드 서버에 인증 코드를 보내는 요청을 성공하면, 'Signup' 화면으로 네비게이션
+
 type NavigationProp = StackNavigationProp<RootStackParamList, 'KakaoLogin'>;
 
 const INJECTED_JAVASCRIPT = `window.ReactNativeWebView.postMessage('message from webView')`;
@@ -30,7 +33,9 @@ const KakaoLogin: React.FC = () => {
         navigation.navigate('Signup', { data: response.data });
       })
       .catch(error => {
-        console.error("Error sending the code:", error);
+        console.error("Error Response Data:", error.response.data);
+        console.error("Error Response Status:", error.response.status);
+        console.error("Error Response Headers:", error.response.headers);
       });
     };
   }

@@ -1,7 +1,12 @@
-import React, { useContext } from 'react';
+import React, { useContext, Dispatch, SetStateAction } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
 import AuthContext from '../../auth-context';
 import { Ionicons } from '@expo/vector-icons';
+
+//로그인 여부, 일정 등록 여부에 따라 다르게 보여져야 하는 컴포넌트인데, 현재 하드코딩 되어있습니다.
+//등록 버튼을 클릭하면 모달 창이 뜨면서 카카오 로그인 페이지로 이동할 수 있습니다.
+//3초만에 회원가입 부분을 말풍선으로 만들고 싶었는데..실패하여 이 부분 코드 수정 필요합니다.
+//이 외에도 스타일 부분들 전체적으로 코드 수정 필요합니다..!!
 
 interface TravelPlanProps {
   onButtonPress: () => void;
@@ -21,7 +26,7 @@ const TravelPlan: React.FC<TravelPlanProps> = ({ onButtonPress, modalVisible, se
         </View>
 
         <TouchableOpacity style={styles.blueSection} onPress={() => setModalVisible(true)}>
-          <Text style={styles.buttonText}>등록 ></Text>
+          <Text style={styles.buttonText}>등록 {'>'}</Text>
         </TouchableOpacity>
       </View>
 
@@ -36,7 +41,6 @@ const TravelPlan: React.FC<TravelPlanProps> = ({ onButtonPress, modalVisible, se
             <Text style={styles.text4}>계정이 필요해요</Text>
             
             <View style={{ alignItems: 'center', marginTop: 15 }}> 
-              <View style={styles.triangle} />
               <View style={styles.bubble}>
                 <Text style={styles.text5}>⚡3초 만에 빠른 회원가입</Text>
               </View>
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
   },
   text1: {
     fontSize: 15,
-    fontWeight: 700,
+    fontWeight: "700",
     textAlign: 'center',
   },
   text2: {
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   },
   text5: {
     fontSize: 11,
-    fontWeight: 800,
+    fontWeight: "800",
   },
   buttonText: {
     color: 'white',
@@ -128,7 +132,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
 bubble: {
-  marginTop: 20,  // triangle의 borderBottomWidth와 같거나 그보다 크게 설정
+  marginTop: 20,  //triangle의 borderBottomWidth와 같거나 그보다 크게 설정
   backgroundColor: 'white',
   borderRadius: 20,
   padding: 15,
@@ -136,7 +140,7 @@ bubble: {
   shadowOffset: { width: 0, height: 5 },
   shadowOpacity: 0.25,
   shadowRadius: 4,
-  elevation: 5, // Android의 그림자 설정
+  elevation: 5,
 },
   kakaoButton: {
     margin: 20,

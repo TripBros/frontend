@@ -5,16 +5,15 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import AuthContext from '../auth-context';
 import TravelPlan from "../components/home-screen/travel-plan";
-import PlaceRecommend from '../components/home-screen/place-recommend';
+import PlaceRecommend from '../components/place-recommend';
 
-type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 //해당 컴포넌트 내에서 네비게이션 액션을 수행할 때 사용되는 navigation prop의 타입을 정의한다.
-//'Home': 현재 컴포넌트가 어떤 화면에 해당하는지 나타낸다.
+type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 
 const HomeScreen: React.FC = () => {
   const authContext = useContext(AuthContext);
   const navigation = useNavigation<NavigationProp>();
-  //navigation 객체를 사용하여 HomeScreen에서 수행할 수 있는 모든 내비게이션 액션을 알게 된다.
+
   const [modalVisible, setModalVisible] = useState<boolean>(false); //부모 컴포넌트로 올려줌.
 
   const onButtonPress = () => {
@@ -22,6 +21,8 @@ const HomeScreen: React.FC = () => {
     setModalVisible(false);
   }
 
+  //원래는 로그인 여부에 따라 travelplan 컴포넌트 부분이 다르게 보여야 하는데, 현재는 로그인 상태 & 일정을 등록하지 않았다는 가정으로 하드코딩되어 있습니다.
+  //authcontext 부분도 travelplan 부분과 별개로 토큰을 사용하여 로그인, 로그아웃 테스트를 하는 부분이며, 추후 삭제될 부분입니다.
   return (
     <ScrollView style={Styles.container}>
       <Text style={Styles.title}>나의 여행 일정</Text>
@@ -30,6 +31,7 @@ const HomeScreen: React.FC = () => {
                 setModalVisible={setModalVisible}/>
       <Text style={Styles.title}>이런 여행지는 어때요?</Text>
       <PlaceRecommend numberOfPlaces={20}/>
+
       {authContext?.userToken ? (
         <View>
           <Text>로그인 되었습니다!</Text>

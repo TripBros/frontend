@@ -1,8 +1,7 @@
 import React from 'react';
 import { Text, StyleSheet, ScrollView } from "react-native";
-import PlaceRecommend from '../components/home-screen/place-recommend';
+import PlaceRecommend from '../components/recommend-screen/place-recommend';
 
-//ScrollView -> FlatList로 변경
 const RecommendScreen: React.FC = () => {
   return (
     <ScrollView style={Styles.container}>
