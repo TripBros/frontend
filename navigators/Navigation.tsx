@@ -6,16 +6,16 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'; 
 
-import KakaoLogin from './screens/kakaoLogin';
-import Home from './screens/home-screen';
-import Signup from './screens/signup';
-import Wait from './screens/wait-screen';
-import Recommend from './screens/recommend-screen';
-import Chat from './screens/chat-screen';
-import Mypage from './screens/mypage';
-import { getAccessToken } from './Token';
-import AuthContext from './auth-context';
-import { RootStackParamList } from './types';
+import KakaoLogin from '../screens/KakaoLogin';
+import Home from '../screens/HomeScreen';
+import Signup from '../screens/SignUp';
+import Wait from '../screens/WaitScreen';
+import Recommend from '../screens/RecommendScreen';
+import Chat from '../screens/ChatScreen';
+import Mypage from '../screens/MyPage';
+import { getAccessToken } from '../Token';
+import AuthContext from '../auth/AuthContext';
+import { RootStackParamList } from '../types';
 
 //헤더(tripbros 문구와 알림 아이콘)
 const customHeaderOptions: StackNavigationOptions = {

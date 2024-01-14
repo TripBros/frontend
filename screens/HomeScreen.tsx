@@ -3,9 +3,9 @@ import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
-import AuthContext from '../auth-context';
-import TravelPlan from "../components/home-screen/travel-plan";
-import PlaceRecommend from '../components/place-recommend';
+import AuthContext from '../auth/AuthContext';
+import TravelPlan from "../components/homeScreen/TravelPlan";
+import PlaceRecommend from '../components/PlaceRecommend';
 
 //해당 컴포넌트 내에서 네비게이션 액션을 수행할 때 사용되는 navigation prop의 타입을 정의한다.
 type NavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;

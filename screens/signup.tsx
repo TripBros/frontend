@@ -6,7 +6,7 @@ import { RootStackParamList } from '../types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from "@react-navigation/native";
 import { storeTokens, getAccessToken } from "../Token";
-import AuthContext from '../auth-context';
+import AuthContext from '../auth/AuthContext';
 
 //카카오에서 제공해주는 정보말고도 서비스에서 필요한 정보들을 입력받기 위한 회원가입 페이지
 

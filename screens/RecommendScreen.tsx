@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, ScrollView } from "react-native";
-import PlaceRecommend from '../components/place-recommend';
+import PlaceRecommend from '../components/PlaceRecommend';
 
 const RecommendScreen: React.FC = () => {
   return (

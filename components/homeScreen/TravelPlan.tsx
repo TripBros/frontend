@@ -1,6 +1,6 @@
 import React, { useContext, Dispatch, SetStateAction } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Modal } from 'react-native';
-import AuthContext from '../../auth-context';
+import AuthContext from '../../auth/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 
 //로그인 여부, 일정 등록 여부에 따라 다르게 보여져야 하는 컴포넌트인데, 현재 하드코딩 되어있습니다.
