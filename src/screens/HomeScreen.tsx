@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { View, Text, StyleSheet, Button, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from '../src/types';
 import AuthContext from '../auth/AuthContext';
 import TravelPlan from "../components/homeScreen/TravelPlan";
 import PlaceRecommend from '../components/PlaceRecommend';

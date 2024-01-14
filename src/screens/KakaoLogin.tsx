@@ -4,7 +4,7 @@ import { WebView } from 'react-native-webview';
 import axios from 'axios';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from "@react-navigation/native";
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from '../src/types';
 import { REST_API_KEY, REDIRECT_URI } from "@env"
 
 //1. 인증코드 추출 후 사용자에게 로그인 처리 중임을 알리기 위해 Wait 화면으로 네비게이션

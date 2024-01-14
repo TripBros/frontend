@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useReducer } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { getAccessToken } from '../Token';
-import AuthContext from '../auth/AuthContext';
+import { getAccessToken } from '../../Token';
+import AuthContext from '../../auth/AuthContext';
 import * as SecureStore from 'expo-secure-store';
 import StackNavigator from "./StackNavigator";
 

@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { View, TextInput, Button, StyleSheet, Alert, Text, TouchableOpacity, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { RouteProp } from '@react-navigation/native';
 import axios from 'axios';
-import { RootStackParamList } from '../types';
+import { RootStackParamList } from '../src/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useNavigation } from "@react-navigation/native";
 import { storeTokens, getAccessToken } from "../Token";

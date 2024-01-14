@@ -13,7 +13,7 @@ import Wait from '../screens/WaitScreen';
 import Recommend from '../screens/RecommendScreen';
 import Chat from '../screens/ChatScreen';
 import Mypage from '../screens/MyPage';
-import { getAccessToken } from '../Token';
+import { getAccessToken } from '../../Token';
 import AuthContext from '../auth/AuthContext';
 import { RootStackParamList } from '../types';
 
